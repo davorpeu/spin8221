@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
     <h1 class="title" id="main_title">Spin2Win Pojmovi</h1>
 
     <table id="table">
         <tr>
-          <th>  Pojam   </th>
-          <th>  Opis    </th>
-          <th>  Autor   </th>
+            <th> Pojam </th>
+            <th> Opis </th>
+            <th> Autor </th>
         </tr>
-        
-      </table>
+
+    </table>
 
 </body>
 <script>
@@ -31,7 +32,49 @@
     var cell3 = row.insertCell(2)
     cell1.innerHTML = "Termin"
     cell2.innerHTML = "Opis"
-    cell3.innerHTML = "Ponovljen"
+    cell3.innerHTML = "Autor"
+    allTerms = []
+
+    function setTable() {
+        for (var i = 0; i < allTerms.length; i++){
+            console.log(allTerms[i])
+            table.insertRow()
+           row.insertCell(i)
+        }
+    }
+
+    url = 'https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food'
+    method = 'POST'
+    headers = {
+        'Content-Type': 'application/json'
+    }
+
+    fetch(url, {
+        method: method,
+        body: JSON.stringify({
+            "queries": [
+                {
+                    "query": "SpinCodeAcademy",
+                    "params": {
+                        "action": "getall",
+                        "userid": 1
+                    }
+                }
+            ]
+        }),
+        headers: headers
+    }).then(function (response) {
+        if (response.ok) {
+            return response.json()
+        }
+    }).then(function (data) {
+        allTerms = data
+        setTable();
+    }).catch(function (err) {
+        console.warn('Something went wrong.', err)
+    })
+
 
 </script>
+
 </html>
