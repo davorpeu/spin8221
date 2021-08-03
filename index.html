@@ -9,13 +9,28 @@
 </head>
 
 <body>
+   
     <h1 class="title" id="main_title">Spin Pojmovi</h1>
+    <br>
+
+    <form action="/action.php"  id="termPost" method="POST">
+        <label for="term">Termin:</label>
+        <br>
+        <input type="text" id="newName" name="name"><br><br>
+        <label for="term">Opis:</label>
+        <br>
+        <input type="text" id="newDescription" name="description"><br><br>
+        <input type="submit" value="Submit" onclick="sendData()">
+        
+
+      </form>
 
     <table id="table">
 
 
     </table>
-
+  
+  
 </body>
 <script>
     var test = 100;
@@ -30,6 +45,7 @@
     cell2.innerHTML = "Opis"
     cell3.innerHTML = "Autor"
     allTerms = []
+    newTerm = []
 
     termRow = row
     descriptionRow = row
@@ -49,13 +65,17 @@
         }
     }
 
+
+
     url = 'https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food'
     method = 'POST'
     headers = {
         'Content-Type': 'application/json'
     }
 
-    fetch(url, {
+
+
+    fetch (url, {
         method: method,
         body: JSON.stringify({
             "queries": [
@@ -80,7 +100,42 @@
         console.warn('Something went wrong.', err)
     })
 
+    function setTerm(){
+    document.getElementById("termPost").submit();
 
+}
+  
+
+   function sendData(){ fetch(url, {
+        method: method,
+        body: JSON.stringify({
+            "queries": [
+                {
+                    "query": "SpinCodeAcademy",
+                    "params": {
+                        "action": "insert",
+                        "userid": 1,
+                        "term": newName.value,
+                        "description": newDescription.value
+                    }
+                }
+            ]
+        }),
+        headers: headers
+    }).then(function (response) {
+        if (response.ok) {
+            return response.json()
+        }
+    }).then(function (data) {
+        newTerm = data
+        setTerm();
+        window.location.href = "/"
+    }).catch(function (err) {
+        console.warn('Something went wrong.', err)
+    })
+   }
+
+  
 </script>
 
 </html>
