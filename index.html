@@ -13,7 +13,7 @@
     <h1 class="title" id="main_title">Spin Pojmovi</h1>
     <br>
 
-    <form action="/action.php"  id="termPost" method="POST">
+    <form action="javascript:alert('Hello there, I am being submitted');"  id="termPost" >
         <label for="term">Termin:</label>
         <br>
         <input type="text" id="newName" name="name"><br><br>
@@ -129,7 +129,7 @@
     }).then(function (data) {
         newTerm = data
         setTerm();
-        window.location.href = "/"
+        window.location.href = "index.html"
     }).catch(function (err) {
         console.warn('Something went wrong.', err)
     })
