@@ -9,14 +9,10 @@
 </head>
 
 <body>
-    <h1 class="title" id="main_title">Spin2Win Pojmovi</h1>
+    <h1 class="title" id="main_title">Spin Pojmovi</h1>
 
     <table id="table">
-        <tr>
-            <th> Pojam </th>
-            <th> Opis </th>
-            <th> Autor </th>
-        </tr>
+
 
     </table>
 
@@ -35,11 +31,21 @@
     cell3.innerHTML = "Autor"
     allTerms = []
 
+    termRow = row
+    descriptionRow = row
+    usernameRow = row
+    table
     function setTable() {
-        for (var i = 0; i < allTerms.length; i++){
-            console.log(allTerms[i])
-            table.insertRow()
-           row.insertCell(i)
+        for (var i = 0; i < allTerms.length; i++) {
+            console.log(allTerms[i].Username)
+            row = table.insertRow()
+            var term = row.insertCell()
+            var description = row.insertCell()
+            var username = row.insertCell()
+            term.innerHTML = allTerms[i].Term
+            description.innerHTML = allTerms[i].Description
+            username.innerHTML = allTerms[i].Username
+
         }
     }
 
