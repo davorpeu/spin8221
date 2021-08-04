@@ -13,13 +13,15 @@
     <h1 class="title" id="main_title">Spin Pojmovi</h1>
     <br>
 
-    <form action="javascript:alert('Hello there, I am being submitted');"  id="termPost" >
+    <form action="javascript:console.log("Submit");"  id="termPost" >
         <label for="term">Termin:</label>
         <br>
         <input type="text" id="newName" name="name"><br><br>
         <label for="term">Opis:</label>
         <br>
         <input type="text" id="newDescription" name="description"><br><br>
+       
+
         <input type="submit" value="Submit" onclick="sendData()">
         
 
@@ -114,9 +116,10 @@
                     "query": "SpinCodeAcademy",
                     "params": {
                         "action": "insert",
-                        "userid": 1,
+                        "userid": 3,
                         "term": newName.value,
                         "description": newDescription.value
+                        
                     }
                 }
             ]
